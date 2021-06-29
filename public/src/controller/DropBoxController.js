@@ -7,10 +7,26 @@ class DropBoxController{
         this.snackModalEl = document.querySelector('#react-snackbar-root');
         this.progressBarEl = this.snackModalEl.querySelector('.mc-progress-bar-fg');
         this.filenameEl = this.snackModalEl.querySelector('.filename');
-        this.timeleftEl = this.snackModalEl.querySelector('.timeleft')
+        this.timeleftEl = this.snackModalEl.querySelector('.timeleft');
 
-
+        this.connectFirebase();
         this.initEvents();
+    }
+
+    connectFirebase(){
+        var firebaseConfig = {
+            apiKey: "AIzaSyAI87nhcwuDshfacHRPjjVrOZT7W8YxGAg",
+            authDomain: "banco-de-dados-dropbox-clone.firebaseapp.com",
+            databaseURL: "https://banco-de-dados-dropbox-clone-default-rtdb.firebaseio.com",
+            projectId: "banco-de-dados-dropbox-clone",
+            storageBucket: "banco-de-dados-dropbox-clone.appspot.com",
+            messagingSenderId: "662879728855",
+            appId: "1:662879728855:web:1f71b38828c46556506c92",
+            measurementId: "G-R28Y5MK583"
+          };
+
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
     }
 
     initEvents(){
