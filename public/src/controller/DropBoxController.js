@@ -360,7 +360,46 @@ class DropBoxController{
 
         li.addEventListener('click', e=>{
 
-            li.classList.toggle('selected')
+            if (e.shiftKey) {
+                
+                let firstLi = this.listFilesEl.querySelector('.selected');
+
+                if (firstLi) {
+
+                    let indexStart;
+                    let indexEnd;
+                    let lis = li.parentElement.childNodes;
+
+                    lis.forEach((el, index)=>{
+
+                        if (firstLi === el) indexStart = index;
+                        if (li === el) indexEnd = index;
+                    });
+
+                    let indexArray = [indexStart, indexEnd].sort();
+
+                    lis.forEach((el, index)=>{
+
+                        if (index >= indexArray[0] && index <= indexArray[1]) {
+
+                            el.classList.add('selected')
+                        }
+                    });
+
+                    return true;
+
+                }
+            }
+
+            if (!e.ctrlKey) {
+
+                this.listFilesEl.querySelectorAll('li.selected').forEach(el=>{
+                    
+                    el.classList.remove('selected');
+                })
+            }
+
+            li.classList.toggle('selected');
         })
 
     }
