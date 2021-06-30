@@ -332,8 +332,9 @@ class DropBoxController{
         li.innerHTML = `
             ${this.getFileIconView(file)}
             <div class="name text-center">${file.name}</div>
-            `
+            `;
 
+        this.initEventsLi(li)
         return li;
     }
 
@@ -348,10 +349,19 @@ class DropBoxController{
                 let key = snapshotItem.key;
                 let data =snapshotItem.val();
 
-                console.log(key, data)
+                console.log(key, data);
 
-                this.listFilesEl.appendChild(this.getFileView(data, key))
-            })
+                this.listFilesEl.appendChild(this.getFileView(data, key));
+            });
+        });
+    }
+
+    initEventsLi(li){
+
+        li.addEventListener('click', e=>{
+
+            li.classList.toggle('selected')
         })
+
     }
 } 
